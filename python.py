@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Path
 
 app = FastAPI()
 
@@ -32,8 +32,17 @@ def index():
 
 
 @app.get('/st/{st_id}') # here we are passing dynamic value of st_id
-def get_st(st_id: int): # defining dynamic variable it should be same data type as of the student object key.
+async def get_st(st_id: int = Path( description="The id of this studnet yiu want to see ", gt=0, lt=10)): # defining dynamic variable it should be same data type as of the student object key.
     return student[st_id] # passing the dynamic variable
+
+
+@app.get('/get-by-name')
+def get_student(name : str ):
+    for student_id in student:
+        if student[student_id]["name"] == name:
+            return student[student_id]
+        return {"Data not found"}
+# gt, lt, 
 
 # GET : return info
 # POST : create something new

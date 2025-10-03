@@ -59,3 +59,20 @@ Command to start python serevr using uvicorn
 
  syntax       fileName:the app is variable which having FastApi() --reload to start the server
  ex:                 uvicorn python:app --reload
+
+### Path
+
+from fastapi import FastAPI, Path
+
+
+
+@app.get('/st/{st_id}') # here we are passing dynamic value of st_id
+async def get_st(st_id: int = Path( description="The id of this studnet yiu want to see ", gt=0, lt=10)): # defining dynamic variable it should be same data type as of the student object key.
+    return student[st_id] # passing the dynamic variable
+
+
+# gt, lt, 
+
+
+### Query Parameters
+
