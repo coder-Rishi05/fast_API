@@ -6,7 +6,7 @@ app = FastAPI()
 student = {
     1:{
         "name":"rishi",
-        "age" : 18,
+        "age" : 28,
         "class":"BCA-III"
     },
     2:{

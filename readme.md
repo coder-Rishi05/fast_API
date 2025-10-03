@@ -53,3 +53,9 @@ def get_st(st_id: int): # defining dynamic variable it should be same data type 
 # POST : create something new
 # PUT : update
 # Delete : delete
+
+
+Command to start python serevr using uvicorn
+
+ syntax       fileName:the app is variable which having FastApi() --reload to start the server
+ ex:                 uvicorn python:app --reload
