@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Path
 from typing import Optional
+from pydantic import BaseModel 
 
 app = FastAPI()
 
@@ -26,6 +27,29 @@ student = {
         "class":"BCA-III"
     }
 }
+
+
+St_info = {
+    1:{
+        "name":"jhon",
+        "age":"19",
+        "year":"year 12"
+    }
+}
+
+students = {
+    1: {"name": "kri", "age": 28, "year": "BCA-III"},
+    2: {"name": "rishi", "age": 18, "year": "BCA-III"}
+}
+
+class Student(BaseModel):
+    name:str
+    age:int
+    year:str
+
+
+
+
 
 @app.get('/')
 def index():
@@ -70,4 +94,13 @@ def get_stdId(*, st_id : int ,test : int,name : Optional[str] = None ):
     
 
 ### Request body and post method.
+
+
+@app.post("/create-student/{std_id}")
+def create_std(std_id: int, student: Student):
+    if std_id in students:
+        return {"error": "Student already exists"}
+    
+    students[std_id] = student.model_dump()  # ✅ use model_dump() instead of dict()
+    return students[std_id]
 
