@@ -1,11 +1,12 @@
 from fastapi import FastAPI, Path
+from typing import Optional
 
 app = FastAPI()
 
 
 student = {
     1:{
-        "name":"rishi",
+        "name":"kri",
         "age" : 28,
         "class":"BCA-III"
     },
@@ -15,12 +16,12 @@ student = {
         "class":"BCA-III"
     },
     3:{
-        "name":"rishi",
+        "name":"mili",
         "age" : 118,
         "class":"BCA-III"
     },
     4:{
-        "name":"rishi",
+        "name":"nok",
         "age" : 18,
         "class":"BCA-III"
     }
@@ -37,7 +38,16 @@ async def get_st(st_id: int = Path( description="The id of this studnet yiu want
 
 
 @app.get('/get-by-name')
-def get_student(name : str ):
+def get_student(name : Optional[str] = None ):
+    for student_id in student:
+        if student[student_id]["name"] == name:
+            return student[student_id]
+        return {"Data not found"}
+
+
+
+@app.get('/getQuery')
+def get_std(*,name : Optional[str] = None, age : int ): # multiple query parameter
     for student_id in student:
         if student[student_id]["name"] == name:
             return student[student_id]
@@ -48,3 +58,16 @@ def get_student(name : str ):
 # POST : create something new
 # PUT : update
 # Delete : delete
+
+# combination of query and path parameter.
+
+@app.get('/getname/{st_id}')
+def get_stdId(*, st_id : int ,test : int,name : Optional[str] = None ):
+    for student_id in student:
+        if student[st_id]["name"] == name:
+            return student[st_id]
+        return {"Data not found"}
+    
+
+### Request body and post method.
+

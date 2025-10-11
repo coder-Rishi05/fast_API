@@ -1,5 +1,12 @@
 ### 🚀 FastAPI Basics – Easy Hinglish Guide
 
+
+
+- running a python server
+    uvicorn python:app --reload
+    here app is from 
+        app = FastAPI()
+
 FastAPI ek modern web framework hai Python ke liye, jo super fast, easy to use, aur production ready hai.Fast Api with python + Project.
 
 
@@ -76,3 +83,8 @@ async def get_st(st_id: int = Path( description="The id of this studnet yiu want
 
 ### Query Parameters
 
+
+### Multiple paramaerts 
+
+
+### Combining path and query parameters
