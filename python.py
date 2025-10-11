@@ -100,7 +100,7 @@ def create_std(std_id: int, student: Student):
 
 @app.get('/')
 def index():
-    return {"name": "first name"}
+    return student
 
 # get by id
 @app.get("/get-student/{std_id}")
@@ -135,3 +135,12 @@ def update_student(std_id: int, student: UpdateStudent):
 @app.get("/get-students")
 def get_all_students():
     return students
+
+# delete route
+
+@app.delete("/deleteData/{std_id}")
+def deleteData(std_id:int):
+    if std_id not in student:
+        return {"Error":"data not found"}
+    del student[std_id]
+    return {"Message " : "student data deleted "}
